@@ -1,5 +1,5 @@
 import { Component, OnInit, animate } from '@angular/core';
-
+import { AuthService } from '../../providers/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -7,12 +7,10 @@ import { Component, OnInit, animate } from '@angular/core';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  constructor(public afService: AuthService) {}
 
-
-  constructor() {}
-
-  ngOnInit() {
-
+  ngOnInit() {}
+  onSignInClick() {
+    const signInUser = this.afService.signInWithGoogle();
   }
-
 }
