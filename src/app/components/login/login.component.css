@@ -1,0 +1,72 @@
+p {
+  color: #000000de;
+}
+
+.login-page-wrapper {
+  background-attachment: fixed;
+  background-size: cover;
+  background-image: url('../../../assets/mat-dark-bg.jpg');
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+}
+
+.form-wrapper {
+  animation: slide-in 0.4s ease-in-out;
+  background: #fff;
+  margin: 0 auto;
+  width: 50%;
+  padding: 85px 15px;
+}
+
+.app-logo {
+  display: block;
+  margin: 0 auto 32px;
+  max-width: 100%;
+}
+
+.app-title {
+  font-size: 20px;
+  margin: 16px 0 32px 0;
+}
+.app-title span {
+  color: #9c27b0;
+}
+
+.login-wrapper {
+  position: relative;
+}
+
+.btn-google {
+  display: block;
+  margin: 0 auto;
+}
+
+.separator {
+  background: rgba(0, 0, 0, 0.24);
+  height: 1px;
+  position: absolute;
+  top: 50%;
+  width: 10%;
+}
+
+.separator.sep-left {
+  left: 20%;
+}
+
+.separator.sep-right {
+  right: 20%;
+}
+
+@keyframes slide-in {
+  0% {
+    opacity: 0.3;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
