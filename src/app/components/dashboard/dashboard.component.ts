@@ -8,10 +8,15 @@ import * as firebase from 'firebase/app';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+  userInfo: any;
   constructor(public afService: AuthService, private router: Router) {}
 
   ngOnInit() {
-    this.afService.isUserSignedIn();
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        this.userInfo = user;
+      }
+    });
   }
 
   onSignOutClick() {

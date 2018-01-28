@@ -14,7 +14,8 @@ img {
   max-width: 100%;
 }
 
-body.menu-collapsed .main-app-component {
+body.menu-collapsed .main-app-component,
+body.menu-collapsed .toolbar-wrapper {
   margin-left: 64px;
 }
 
@@ -26,15 +27,54 @@ body.menu-collapsed .main-app-component {
 }
 
 .flex-center-vertical {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
-.transparent-bg {
+.flex-center-vertical-horizontal {
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+.bg-transparent {
   background: transparent !important;
+}
+
+.bg-white {
+  background-color: #fff !important;
+}
+
+.mat-elevation {
+  -webkit-box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2),
+    0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12);
+  box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14),
+    0 1px 3px 0 rgba(0, 0, 0, 0.12);
+}
+
+.loading-overlay {
+  background: rgba(0, 0, 0, 0.8);
+  bottom: 0;
+  height: 100vh;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+.no-padding {
+  padding: 0 !important;
 }
 /* animations */
 .slide-in-from-bottom {

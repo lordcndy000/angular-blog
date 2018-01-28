@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../providers/auth.service';
+import * as firebase from 'firebase/app';
+import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
 
 @Component({
   selector: 'app-sidenav',
@@ -7,11 +10,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidenavComponent implements OnInit {
   isOpen = false;
+  userInfo;
 
-  constructor() {}
+  constructor(
+    private afService: AuthService,
+    private afAuth: AngularFireAuth
+  ) {}
 
   ngOnInit() {
-    const sidenavContainer = document.getElementById('sidenavContainer');
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        this.userInfo = user;
+        console.log(this.userInfo, 'side');
+      }
+    });
   }
   onCloseMenu() {
     const sidenavContainer = document.getElementById('sidenavContainer');

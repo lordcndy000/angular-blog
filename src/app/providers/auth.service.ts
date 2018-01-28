@@ -16,7 +16,8 @@ export class AuthService {
   isUserSignedIn() {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
-        console.log(user);
+        this.userInfo = user;
+        return this.userInfo;
       } else {
         this.router.navigate(['']);
       }

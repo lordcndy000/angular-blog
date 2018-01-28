@@ -140,3 +140,25 @@
   font-size: 14px;
   white-space: nowrap;
 }
+
+.toolbar-wrapper {
+  margin-left: 256px;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.toolbar-contents {
+  height: 100%;
+  width: 100%;
+}
+
+.toolbar-contents .content-right {
+  height: 100%;
+  width: 100%;
+}
+.toolbar-contents .content-right .profile-box {
+  height: 100%;
+}
+.toolbar-contents .content-right .profile-box img {
+  border-radius: 50%;
+  height: 70%;
+}
