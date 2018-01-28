@@ -8,12 +8,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Routes, RouterModule } from '@angular/router';
 import { environment } from '../environments/environment';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
 // components
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 // providers
 import { AuthService } from './providers/auth.service';
+import { SidenavComponent } from './components/sidenav/sidenav.component';
 
 const appRoutes: Routes = [
   {
@@ -27,7 +30,12 @@ const appRoutes: Routes = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, DashboardComponent],
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    DashboardComponent,
+    SidenavComponent
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -36,7 +44,9 @@ const appRoutes: Routes = [
     AngularFirestoreModule,
     AngularFireAuthModule,
     AngularFireStorageModule,
-    MatButtonModule
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

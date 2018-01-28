@@ -1,0 +1,23 @@
+<mat-sidenav-container class="sidenav-container" id="sidenavContainer">
+  <mat-sidenav class="sidenav-content" mode="side" opened="true">
+    <div class="sidenav-header flex-center-vertical">
+      <div class="logo flex-center-vertical">
+        <img src="./assets/chrono.png" class="logo-icon">
+        <span class="logo-text">CRONUS</span>
+      </div>
+      <button *ngIf="!isOpen; else closed" (click)="onCloseMenu()" mat-mini-fab class="transparent-bg" id="menuToggle">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+      <ng-template #closed>
+        <button (click)="onOpenMenu()" mat-mini-fab class="transparent-bg" id="menuOpen">
+          <mat-icon>arrow_forward</mat-icon>
+        </button>
+      </ng-template>
+    </div>
+    <div class="sidenav-items-wrapper">
+      <div class="group-title">
+        <span class="hint-text">Applications</span>
+      </div>
+    </div>
+  </mat-sidenav>
+</mat-sidenav-container>

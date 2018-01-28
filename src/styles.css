@@ -3,9 +3,51 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 
 * {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Roboto', Helvetica Neue, Arial, sans-serif;
 }
 
 .text-center {
   text-align: center;
+}
+
+img {
+  max-width: 100%;
+}
+
+body.menu-collapsed .main-app-component {
+  margin-left: 64px;
+}
+
+.main-app-component {
+  margin-left: 256px;
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  z-index: 1;
+}
+
+.flex-center-vertical {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.transparent-bg {
+  background: transparent !important;
+}
+/* animations */
+.slide-in-from-bottom {
+  animation: slide-in-from-bottom 0.4s ease-in-out;
+}
+
+@keyframes slide-in-from-bottom {
+  0% {
+    opacity: 0.3;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
