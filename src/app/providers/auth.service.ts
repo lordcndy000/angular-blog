@@ -13,6 +13,15 @@ export class AuthService {
     private zone: NgZone
   ) {}
 
+  isUserSignedIn() {
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        console.log(user);
+      } else {
+        this.router.navigate(['']);
+      }
+    });
+  }
 
   signInWithGoogle() {
     const provider = new firebase.auth.GoogleAuthProvider();

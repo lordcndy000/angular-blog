@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../providers/auth.service';
+import { Router } from '@angular/router';
+import * as firebase from 'firebase/app';
 
 @Component({
   selector: 'app-contacts',
@@ -6,10 +9,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./contacts.component.css']
 })
 export class ContactsComponent implements OnInit {
-
-  constructor() { }
+  constructor(public afService: AuthService, private router: Router) {}
 
   ngOnInit() {
+    this.afService.isUserSignedIn();
   }
-
 }

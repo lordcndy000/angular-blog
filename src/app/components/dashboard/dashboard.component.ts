@@ -11,18 +11,9 @@ export class DashboardComponent implements OnInit {
   constructor(public afService: AuthService, private router: Router) {}
 
   ngOnInit() {
-    this.isUserSignedIn();
+    this.afService.isUserSignedIn();
   }
 
-  isUserSignedIn() {
-    firebase.auth().onAuthStateChanged(user => {
-      if (user) {
-        console.log(user);
-      } else {
-        this.router.navigate(['']);
-      }
-    });
-  }
   onSignOutClick() {
     this.afService.signOut();
   }
