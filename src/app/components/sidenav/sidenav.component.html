@@ -10,13 +10,39 @@
       </button>
       <ng-template #closed>
         <button (click)="onOpenMenu()" mat-mini-fab class="transparent-bg" id="menuOpen">
-          <mat-icon>arrow_forward</mat-icon>
+          <mat-icon>dehaze</mat-icon>
         </button>
       </ng-template>
     </div>
     <div class="sidenav-items-wrapper">
       <div class="group-title">
         <span class="hint-text">Applications</span>
+      </div>
+      <div class="group-items">
+        <a class="nav-link flex-center-vertical">
+          <mat-icon class="nav-icon">dashboard</mat-icon>
+          <span class="nav-link-title">Dashboard</span>
+        </a>
+        <a class="nav-link flex-center-vertical">
+          <mat-icon class="nav-icon">today</mat-icon>
+          <span class="nav-link-title">Calendar</span>
+        </a>
+        <a class="nav-link flex-center-vertical">
+          <mat-icon class="nav-icon">email</mat-icon>
+          <span class="nav-link-title">Mail</span>
+        </a>
+        <a class="nav-link flex-center-vertical">
+          <mat-icon class="nav-icon">folder</mat-icon>
+          <span class="nav-link-title">File Manager</span>
+        </a>
+        <a class="nav-link flex-center-vertical">
+          <mat-icon class="nav-icon">account_box</mat-icon>
+          <span class="nav-link-title">Contacts</span>
+        </a>
+        <a class="nav-link flex-center-vertical">
+          <mat-icon class="nav-icon">check_box</mat-icon>
+          <span class="nav-link-title">To-Do</span>
+        </a>
       </div>
     </div>
   </mat-sidenav>

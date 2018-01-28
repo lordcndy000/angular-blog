@@ -19,7 +19,8 @@
   padding: 0 13px;
 }
 
-.sidenav-container.closed-side .logo-text {
+.sidenav-container.closed-side .logo-text,
+.sidenav-container.closed-side .nav-link-title {
   opacity: 0;
   -webkit-transition: opacity 0.2s ease;
   transition: opacity 0.2s ease;
@@ -101,4 +102,37 @@
   min-width: 1rem;
   border-top: 2px solid;
   opacity: 0.2;
+}
+
+.nav-link {
+  cursor: pointer;
+  user-select: none;
+  color: #fff;
+  padding: 0px 24px;
+  overflow: hidden;
+  position: relative;
+  text-decoration: none !important;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  height: 48px;
+}
+
+.nav-link:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+.nav-icon {
+  font-size: 16px;
+  height: 16px;
+  line-height: 16px;
+  margin-right: 16px;
+  min-width: 16px;
+  min-height: 16px;
+  width: 16px;
+}
+
+.nav-link-title {
+  -webkit-box-flex: 1;
+  flex: 1 1 0%;
+  font-size: 14px;
+  white-space: nowrap;
 }

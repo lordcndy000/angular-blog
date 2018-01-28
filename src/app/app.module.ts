@@ -17,6 +17,11 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 // providers
 import { AuthService } from './providers/auth.service';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
+import { CalendarComponent } from './components/calendar/calendar.component';
+import { MailComponent } from './components/mail/mail.component';
+import { FileManagerComponent } from './components/file-manager/file-manager.component';
+import { ContactsComponent } from './components/contacts/contacts.component';
+import { ToDoComponent } from './components/to-do/to-do.component';
 
 const appRoutes: Routes = [
   {
@@ -34,7 +39,12 @@ const appRoutes: Routes = [
     AppComponent,
     LoginComponent,
     DashboardComponent,
-    SidenavComponent
+    SidenavComponent,
+    CalendarComponent,
+    MailComponent,
+    FileManagerComponent,
+    ContactsComponent,
+    ToDoComponent
   ],
   imports: [
     BrowserModule,
