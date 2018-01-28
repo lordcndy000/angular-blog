@@ -1,20 +1,32 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
+import { NgZone } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthService {
-  constructor(public afAuth: AngularFireAuth) {}
+  userInfo: any;
+  constructor(
+    public afAuth: AngularFireAuth,
+    private router: Router,
+    private zone: NgZone
+  ) {}
+
 
   signInWithGoogle() {
+    const provider = new firebase.auth.GoogleAuthProvider();
     this.afAuth.auth
-      .signInWithPopup(new firebase.auth.GoogleAuthProvider())
+      .signInWithPopup(provider)
       .then(result => {
-        const signInInfo = {
-          token: result.credential.accessToken,
-          user: result.user
-        };
-        return signInInfo;
+        // const signInInfo = {
+        const token = result.credential.accessToken;
+        const user = result.user;
+        this.zone.run(() => {
+          this.router.navigate(['dashboard']);
+        });
+
+        // };
       })
       .catch(error => {
         const errorCode = error.code;
@@ -24,6 +36,17 @@ export class AuthService {
         // The firebase.auth.AuthCredential type that was used.
         const credential = error.credential;
         console.log(errorMessage);
+      });
+  }
+
+  signOut() {
+    this.afAuth.auth
+      .signOut()
+      .then(() => {
+        this.router.navigate(['']);
+      })
+      .catch(error => {
+        console.log(error);
       });
   }
 }
