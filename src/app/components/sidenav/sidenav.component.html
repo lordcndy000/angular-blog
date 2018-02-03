@@ -55,14 +55,30 @@
   <div class="toolbar-wrapper">
     <mat-toolbar class="mat-elevation bg-white no-padding">
       <div class="toolbar-contents">
-        <div class="content-right">
+        <div class="content-right flex-center-vertical">
           <div class="profile-box flex-center-vertical">
             <img src="{{userInfo.photoURL}}" alt="">
             <p>{{userInfo.displayName}}</p>
-
           </div>
+          <button mat-button (click)="onSignOutClick()" class="top-nav-ctrl btn-signout">
+            <mat-icon class="ctrl-icon" aria-label="Sign out button">exit_to_app</mat-icon>
+          </button>
+          <button mat-button (click)="onRightMenuClick()" class="top-nav-ctrl">
+            <mat-icon class="ctrl-icon" aria-label="Right menu toggle">format_list_bulleted</mat-icon>
+          </button>
         </div>
       </div>
     </mat-toolbar>
   </div>
+  <mat-sidenav-container class="drawer-container" id="drawerContainer">
+    <mat-sidenav class="drawer-content" mode="side" opened="true">
+      <div class="date-wrapper">
+        <h3 class="sub-header label">Today</h3>
+        <p class="sub-header date time">{{moment | amLocal | amDateFormat: 'h:mm:ss A'}}</p>
+        <p class="sub-header date">{{moment | amLocal | amDateFormat: 'dddd'}}</p>
+        <p class="sub-header date">{{moment | amLocal | amDateFormat: 'do MMMM'}}</p>
+      </div>
+    </mat-sidenav>
+  </mat-sidenav-container>
+  <div class="body-overlay" id="bodyOverlay"></div>
 </ng-template>

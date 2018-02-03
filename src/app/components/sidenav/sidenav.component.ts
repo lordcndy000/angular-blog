@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../providers/auth.service';
 import * as firebase from 'firebase/app';
 import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
+import { setInterval } from 'timers';
 
 @Component({
   selector: 'app-sidenav',
@@ -11,6 +12,8 @@ import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
 export class SidenavComponent implements OnInit {
   isOpen = false;
   userInfo;
+  moment: Date;
+  ordinal: String;
 
   constructor(
     private afService: AuthService,
@@ -24,6 +27,15 @@ export class SidenavComponent implements OnInit {
         console.log(this.userInfo, 'side');
       }
     });
+
+    this.updateTime();
+  }
+  updateTime() {
+    setInterval(() => {
+      this.moment = new Date();
+
+      // this.ordinal = (this.moment.getDay() === 1 ? 'st' : (this.moment.getDay === 2))
+    }, 1000);
   }
   onCloseMenu() {
     const sidenavContainer = document.getElementById('sidenavContainer');
@@ -38,11 +50,13 @@ export class SidenavComponent implements OnInit {
     sidenavContainer.classList.remove('closed-side');
     document.body.classList.remove('menu-collapsed');
   }
+
   leaveEvent() {
     const sidenavContainer = document.getElementById('sidenavContainer');
     sidenavContainer.classList.add('closed-side');
     document.body.classList.add('menu-collapsed');
   }
+
   onHoverMenu() {
     const sidenavContainer = document.getElementById('sidenavContainer');
     if (this.isOpen === true) {
@@ -50,16 +64,37 @@ export class SidenavComponent implements OnInit {
       sidenavContainer.addEventListener('mouseleave', this.leaveEvent);
     }
   }
+
   onOpenMenu() {
     const sidenavContainer = document.getElementById('sidenavContainer');
     sidenavContainer.classList.remove('closed-side');
     this.isOpen = false;
     this.removeEvents();
   }
+
   removeEvents() {
     const sidenavContainer = document.getElementById('sidenavContainer');
     document.body.classList.remove('menu-collapsed');
     sidenavContainer.removeEventListener('mouseenter', this.enterEvent);
     sidenavContainer.removeEventListener('mouseleave', this.leaveEvent);
+  }
+
+  onSignOutClick() {
+    this.afService.signOut();
+  }
+
+  onRightMenuClick() {
+    const drawer = document.getElementById('drawerContainer');
+    const overlay = document.getElementById('bodyOverlay');
+
+    drawer.classList.add('opened');
+    overlay.classList.add('show-overlay');
+
+    if (overlay.classList.contains('show-overlay')) {
+      overlay.addEventListener('click', e => {
+        drawer.classList.remove('opened');
+        overlay.classList.remove('show-overlay');
+      });
+    }
   }
 }

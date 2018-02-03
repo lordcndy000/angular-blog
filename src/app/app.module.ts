@@ -13,6 +13,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MomentModule } from 'angular2-moment/moment.module';
 // components
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -77,6 +78,7 @@ const appRoutes: Routes = [
     AngularFirestoreModule,
     AngularFireAuthModule,
     AngularFireStorageModule,
+    MomentModule,
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,

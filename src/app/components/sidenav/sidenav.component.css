@@ -9,6 +9,7 @@
   top: 0;
   transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
   width: 256px;
+  z-index: 8;
 }
 
 .sidenav-container.closed-side {
@@ -104,6 +105,51 @@
   opacity: 0.2;
 }
 
+.drawer-container {
+  bottom: 0;
+  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2),
+    0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12);
+  right: 0;
+  height: 100vh;
+  position: fixed;
+  right: 0;
+  top: 0;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  width: 0;
+  z-index: 10;
+}
+
+.drawer-container.opened {
+  width: 264px;
+}
+
+.drawer-content {
+  height: 100%;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+.drawer-content .date-wrapper {
+  border-bottom: 1px solid #0000004f;
+  padding: 16px;
+}
+
+.drawer-content .sub-header {
+  color: #0000008a;
+  margin: 10px 0;
+}
+
+.drawer-content .sub-header.label {
+  font-size: 14px;
+}
+
+.drawer-content .sub-header.date.time {
+  font-size: 20px;
+}
+
+.drawer-content .sub-header.date {
+  font-size: 30px;
+}
 .nav-link {
   cursor: pointer;
   user-select: none;
@@ -153,12 +199,42 @@
 
 .toolbar-contents .content-right {
   height: 100%;
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
   width: 100%;
 }
+
 .toolbar-contents .content-right .profile-box {
   height: 100%;
 }
+
 .toolbar-contents .content-right .profile-box img {
   border-radius: 50%;
-  height: 70%;
+  height: 40px;
+  margin-right: 8px;
+}
+
+.toolbar-contents .content-right .profile-box p {
+  color: #000000de;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.top-nav-ctrl {
+  height: 100%;
+  min-width: 0px;
+  padding: 0 10px;
+  width: 64px;
+}
+
+.top-nav-ctrl .ctrl-icon {
+  color: #0000008a;
+  font-size: 24px;
+}
+
+.btn-signout {
+  border-left: 1px solid #0000004f;
+  border-right: 1px solid #0000004f;
+  margin-left: 20px;
 }
