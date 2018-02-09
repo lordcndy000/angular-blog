@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../providers/auth.service';
 import * as firebase from 'firebase/app';
 import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
-import { setInterval } from 'timers';
+import { DatePipe } from '@angular/common';
+// import { setInterval } from 'timers';
 
 @Component({
   selector: 'app-sidenav',
@@ -12,8 +13,8 @@ import { setInterval } from 'timers';
 export class SidenavComponent implements OnInit {
   isOpen = false;
   userInfo;
-  moment: Date;
   ordinal: String;
+  today: any;
 
   constructor(
     private afService: AuthService,
@@ -29,14 +30,22 @@ export class SidenavComponent implements OnInit {
     });
 
     this.updateTime();
+
+    const day = new Date();
+    this.getGetOrdinal(day.getDate());
   }
   updateTime() {
     setInterval(() => {
-      this.moment = new Date();
-
-      // this.ordinal = (this.moment.getDay() === 1 ? 'st' : (this.moment.getDay === 2))
+      this.today = Date.now();
     }, 1000);
   }
+
+  getGetOrdinal(n) {
+    const s = ['th', 'st', 'nd', 'rd'],
+      v = n % 100;
+    this.ordinal = s[(v - 20) % 10] || s[v] || s[0];
+  }
+
   onCloseMenu() {
     const sidenavContainer = document.getElementById('sidenavContainer');
     document.body.classList.add('menu-collapsed');

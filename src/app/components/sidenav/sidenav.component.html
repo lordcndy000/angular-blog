@@ -74,9 +74,12 @@
     <mat-sidenav class="drawer-content" mode="side" opened="true">
       <div class="date-wrapper">
         <h3 class="sub-header label">Today</h3>
-        <p class="sub-header date time">{{moment | amLocal | amDateFormat: 'h:mm:ss A'}}</p>
-        <p class="sub-header date">{{moment | amLocal | amDateFormat: 'dddd'}}</p>
-        <p class="sub-header date">{{moment | amLocal | amDateFormat: 'do MMMM'}}</p>
+        <p class="sub-header date time">{{today | date:'HH:mm:ss a'}}</p>
+        <p class="sub-header date">{{today | date: 'EEEE'}}</p>
+        <p class="sub-header date">
+          {{today | date: 'd'}}<sup>{{ordinal}}</sup> 
+          {{today | date: 'LLLL'}}
+        </p>
       </div>
     </mat-sidenav>
   </mat-sidenav-container>
