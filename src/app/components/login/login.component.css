@@ -14,7 +14,6 @@ p {
 }
 
 .form-wrapper {
-  animation: slide-in 0.4s ease-in-out;
   background: #fff;
   margin: 0 auto;
   width: 50%;
@@ -42,31 +41,20 @@ p {
 .btn-google {
   display: block;
   margin: 0 auto;
+  position: relative;
 }
-
-.separator {
-  background: rgba(0, 0, 0, 0.24);
-  height: 1px;
+.btn-google::before,
+.btn-google::after {
+  background: rgba(0, 0, 0, 0.12);
+  content: '';
+  height: 2px;
   position: absolute;
   top: 50%;
-  width: 10%;
+  width: 30px;
 }
-
-.separator.sep-left {
-  left: 20%;
+.btn-google::before {
+  left: -30px;
 }
-
-.separator.sep-right {
-  right: 20%;
-}
-
-@keyframes slide-in {
-  0% {
-    opacity: 0.3;
-    transform: translateY(40px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.btn-google::after {
+  right: -30px;
 }

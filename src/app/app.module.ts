@@ -8,10 +8,22 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Routes, RouterModule } from '@angular/router';
 import { environment } from '../environments/environment';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MomentModule } from 'angular2-moment/moment.module';
 // components
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
+import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { CalendarComponent } from './components/calendar/calendar.component';
+import { MailComponent } from './components/mail/mail.component';
+import { FileManagerComponent } from './components/file-manager/file-manager.component';
+import { ContactsComponent } from './components/contacts/contacts.component';
+import { ToDoComponent } from './components/to-do/to-do.component';
 // providers
 import { AuthService } from './providers/auth.service';
 
@@ -23,11 +35,41 @@ const appRoutes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent
+  },
+  {
+    path: 'calendar',
+    component: CalendarComponent
+  },
+  {
+    path: 'mail',
+    component: MailComponent
+  },
+  {
+    path: 'file-manager',
+    component: FileManagerComponent
+  },
+  {
+    path: 'contacts',
+    component: ContactsComponent
+  },
+  {
+    path: 'to-do',
+    component: ToDoComponent
   }
 ];
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, DashboardComponent],
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    DashboardComponent,
+    SidenavComponent,
+    CalendarComponent,
+    MailComponent,
+    FileManagerComponent,
+    ContactsComponent,
+    ToDoComponent
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -36,7 +78,13 @@ const appRoutes: Routes = [
     AngularFirestoreModule,
     AngularFireAuthModule,
     AngularFireStorageModule,
-    MatButtonModule
+    MomentModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatToolbarModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

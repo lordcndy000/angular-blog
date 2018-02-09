@@ -2,20 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../providers/auth.service';
 import { Router } from '@angular/router';
 import * as firebase from 'firebase/app';
+
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  selector: 'app-to-do',
+  templateUrl: './to-do.component.html',
+  styleUrls: ['./to-do.component.css']
 })
-export class DashboardComponent implements OnInit {
-  userInfo: any;
+export class ToDoComponent implements OnInit {
   constructor(public afService: AuthService, private router: Router) {}
 
   ngOnInit() {
-    firebase.auth().onAuthStateChanged(user => {
-      if (user) {
-        this.userInfo = user;
-      }
-    });
+    this.afService.isUserSignedIn();
   }
 }

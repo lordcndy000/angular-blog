@@ -1,1 +1,7 @@
-<button (click)="onSignOutClick()" mat-raised-button color="primary">Signout</button>
+<app-sidenav></app-sidenav>
+<div *ngIf="!userInfo; else doneFetchingData">
+  <!-- <div class="loading-overlay"></div> -->
+</div>
+<ng-template #doneFetchingData>
+  test
+</ng-template>
