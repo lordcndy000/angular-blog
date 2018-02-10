@@ -1,9 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
-@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 
 * {
   font-family: 'Roboto', Helvetica Neue, Arial, sans-serif;
+  box-sizing: border-box;
 }
 
 .text-center {
@@ -24,6 +25,14 @@ body.menu-collapsed .toolbar-wrapper {
   position: relative;
   transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
   z-index: 1;
+}
+
+.flex-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
 }
 
 .flex-center-vertical {
@@ -103,8 +112,43 @@ body.menu-collapsed .toolbar-wrapper {
   display: block;
 }
 
+.hero-wrapper {
+  background-image: url(./assets/deep-purple.jpg);
+  background-size: cover;
+  height: 200px;
+  max-height: 200px;
+  padding: 24px 24px 0;
+  width: 100%;
+}
+
 .no-padding {
   padding: 0 !important;
+}
+
+.page-title-col {
+  color: #ffffff;
+  height: 100%;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  padding-right: 24px;
+  width: 20%;
+}
+
+.page-title {
+  margin: 0;
+  width: 100%;
+}
+
+.page-title .page-icon {
+  font-size: 27px;
+  height: 27px;
+  margin-right: 10px;
+  width: 27px;
+}
+
+.page-title span {
+  color: #ffffff;
+  font-size: 24px;
 }
 /* animations */
 .slide-in-from-bottom {
