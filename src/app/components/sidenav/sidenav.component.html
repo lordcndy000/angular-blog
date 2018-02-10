@@ -1,0 +1,89 @@
+<div *ngIf="!userInfo; else doneFetchingData" class="loading-overlay flex-center-vertical-horizontal flex-column">
+  <img src="./assets/chrono.png" height="80" width="80">
+  <mat-progress-spinner color="primary" mode="indeterminate">
+  </mat-progress-spinner>
+</div>
+<ng-template #doneFetchingData>
+  <mat-sidenav-container class="sidenav-container" id="sidenavContainer">
+    <mat-sidenav class="sidenav-content" mode="side" opened="true">
+      <div class="sidenav-header flex-center-vertical">
+        <div class="logo flex-center-vertical">
+          <img src="./assets/chrono.png" class="logo-icon">
+          <span class="logo-text">CRONUS</span>
+        </div>
+        <button *ngIf="!isOpen; else closed" (click)="onCloseMenu()" color="primary" mat-mini-fab class="bg-transparent" id="menuToggle">
+          <mat-icon>arrow_back</mat-icon>
+        </button>
+        <ng-template #closed>
+          <button (click)="onOpenMenu()" color="primary" mat-mini-fab class="bg-transparent" id="menuOpen">
+            <mat-icon>dehaze</mat-icon>
+          </button>
+        </ng-template>
+      </div>
+      <div class="sidenav-items-wrapper">
+        <div class="group-title">
+          <span class="hint-text">Applications</span>
+        </div>
+        <div class="group-items">
+          <a routerLink='/dashboard' routerLinkActive="active" class="nav-link flex-center-vertical">
+            <mat-icon class="nav-icon">dashboard</mat-icon>
+            <span class="nav-link-title">Dashboard</span>
+          </a>
+          <a routerLink='/calendar' routerLinkActive="active" class="nav-link flex-center-vertical">
+            <mat-icon class="nav-icon">today</mat-icon>
+            <span class="nav-link-title">Calendar</span>
+          </a>
+          <a routerLink='/mail' routerLinkActive="active" class="nav-link flex-center-vertical">
+            <mat-icon class="nav-icon">email</mat-icon>
+            <span class="nav-link-title">Mail</span>
+          </a>
+          <a routerLink='/file-manager' routerLinkActive="active" class="nav-link flex-center-vertical">
+            <mat-icon class="nav-icon">folder</mat-icon>
+            <span class="nav-link-title">File Manager</span>
+          </a>
+          <a routerLink='/contacts' routerLinkActive="active" class="nav-link flex-center-vertical">
+            <mat-icon class="nav-icon">account_box</mat-icon>
+            <span class="nav-link-title">Contacts</span>
+          </a>
+          <a routerLink='/to-do' routerLinkActive="active" class="nav-link flex-center-vertical">
+            <mat-icon class="nav-icon">check_box</mat-icon>
+            <span class="nav-link-title">To-Do</span>
+          </a>
+        </div>
+      </div>
+    </mat-sidenav>
+  </mat-sidenav-container>
+  <div class="toolbar-wrapper">
+    <mat-toolbar class="mat-elevation bg-white no-padding">
+      <div class="toolbar-contents">
+        <div class="content-right flex-center-vertical">
+          <div class="profile-box flex-center-vertical">
+            <img src="{{userInfo.photoURL}}" alt="">
+            <p>{{userInfo.displayName}}</p>
+          </div>
+          <button mat-button (click)="onSignOutClick()" class="top-nav-ctrl btn-signout">
+            <mat-icon class="ctrl-icon" aria-label="Sign out button">exit_to_app</mat-icon>
+          </button>
+          <button mat-button (click)="onRightMenuClick()" class="top-nav-ctrl">
+            <mat-icon class="ctrl-icon" aria-label="Right menu toggle">format_list_bulleted</mat-icon>
+          </button>
+        </div>
+      </div>
+    </mat-toolbar>
+  </div>
+  <mat-sidenav-container class="drawer-container" id="drawerContainer">
+    <mat-sidenav class="drawer-content" mode="side" opened="true">
+      <div class="date-wrapper">
+        <h3 class="sub-header label">Today</h3>
+        <p class="sub-header date time">{{today | date:'HH:mm:ss a'}}</p>
+        <p class="sub-header date">{{today | date: 'EEEE'}}</p>
+        <p class="sub-header date">
+          {{today | date: 'd'}}
+          <sup>{{ordinal}}</sup>
+          {{today | date: 'LLLL'}}
+        </p>
+      </div>
+    </mat-sidenav>
+  </mat-sidenav-container>
+  <div class="body-overlay" id="bodyOverlay"></div>
+</ng-template>
