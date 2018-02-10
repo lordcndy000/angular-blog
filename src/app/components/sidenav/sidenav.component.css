@@ -149,6 +149,7 @@
 
 .drawer-content .sub-header.date {
   font-size: 30px;
+  white-space: nowrap;
 }
 .nav-link {
   cursor: pointer;
@@ -158,7 +159,6 @@
   overflow: hidden;
   position: relative;
   text-decoration: none !important;
-  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
   height: 48px;
 }
 
