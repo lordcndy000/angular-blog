@@ -16,7 +16,7 @@ img {
 }
 
 body.menu-collapsed .main-app-component,
-body.menu-collapsed .toolbar-wrapper {
+body.menu-collapsed .main-toolbar-wrapper {
   margin-left: 64px;
 }
 
