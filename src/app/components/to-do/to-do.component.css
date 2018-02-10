@@ -45,6 +45,9 @@
 
 .toolbar-wrapper {
   align-self: flex-end;
+  -webkit-box-shadow: 0px 7px 15px 4px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0px 7px 15px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 7px 15px 4px rgba(0, 0, 0, 0.2);
   height: 56px;
   width: 100%;
 }
@@ -68,6 +71,9 @@
 
 .todo-list,
 .todo-add {
+  -webkit-box-shadow: 0px 7px 15px 4px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0px 7px 15px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 7px 15px 4px rgba(0, 0, 0, 0.2);
   width: 80%;
 }
 
@@ -85,4 +91,28 @@
   color: rgba(0, 0, 0, 0.87);
   font-size: 14px;
   font-weight: 600;
+}
+
+.add-left-ctrl {
+  -webkit-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+
+.input-fields-wrapper {
+  padding: 24px;
+}
+
+.add-todo-date-wrapper {
+  justify-content: space-between;
+  margin: 15px 0;
+}
+
+.start-date,
+.due-date {
+  width: 48%;
+}
+
+.loading-todos {
+  height: calc(100vh - 264px);
 }
