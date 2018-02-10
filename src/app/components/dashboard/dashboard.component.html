@@ -1,9 +1,4 @@
 <app-sidenav></app-sidenav>
-<div *ngIf="!userInfo; else doneFetchingData">
-  <!-- <div class="loading-overlay"></div> -->
+<div class="main-app-component slide-in-from-bottom">
+  dashboard
 </div>
-<ng-template #doneFetchingData>
-  <div class="main-app-component slide-in-from-bottom">
-    dashboard
-  </div>
-</ng-template>
