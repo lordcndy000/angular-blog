@@ -25,23 +25,98 @@
       </div>
     </div>
   </div>
-  <div class="todo-section flex-container">
-    <div class="todo-filters">
-      test
+  <div *ngIf="!todoList; else doneFetchingTodos">
+    <div class="loading-todos flex-center-vertical-horizontal">
+      <mat-progress-spinner color="primary" [diameter]="40" mode="indeterminate"></mat-progress-spinner>
     </div>
-    <div class="todo-list" *ngIf="!addTaskState; else addTask">
-      todo-list
-    </div>
-    <ng-template #addTask>
-      <div class="todo-add">
-        <mat-toolbar class="addtodo-toolbar slide-in-from-bottom">
-          <mat-checkbox>
-            <span>Mark as done</span>
-          </mat-checkbox>
-        </mat-toolbar>
-      </div>
-    </ng-template>
-
   </div>
+  <ng-template #doneFetchingTodos>
+    <div class="todo-section flex-container">
+      <div class="todo-filters">
 
+      </div>
+      <div class="todo-list slide-in-from-bottom" *ngIf="!addTaskState; else addTask">
+        <div *ngIf="todoList?.length > 0; else noToDos">
+          <ul *ngFor="let todo of todoList">
+            <li>{{todo.title}}</li>
+          </ul>
+        </div>
+        <ng-template #noTodos>
+          <p>No todo</p>
+        </ng-template>
+      </div>
+      <ng-template #addTask>
+        <div class="todo-add slide-in-from-bottom">
+          <form class="add-todo-form" [formGroup]="addToDoForm" (submit)="submitAdd()">
+            <mat-toolbar class="addtodo-toolbar">
+              <div class="add-left-ctrl">
+                <mat-checkbox>
+                  <span>Mark as done</span>
+                </mat-checkbox>
+              </div>
+              <div class="add-right-ctrl">
+                <button mat-icon-button matTooltip="Set priority" (click)="togglePrio()" *ngIf="!prio; else priority">
+                  <mat-icon>error_outline</mat-icon>
+                </button>
+                <ng-template #priority>
+                  <button mat-icon-button matTooltip="Remove priority" (click)="togglePrio()">
+                    <mat-icon>error</mat-icon>
+                  </button>
+                </ng-template>
+                <button mat-icon-button matTooltip="Add star" (click)="toggleStar()" *ngIf="!star; else starred">
+                  <mat-icon>star_border</mat-icon>
+                </button>
+                <ng-template #starred>
+                  <button mat-icon-button matTooltip="Remove star" (click)="toggleStar()">
+                    <mat-icon>star</mat-icon>
+                  </button>
+                </ng-template>
+              </div>
+            </mat-toolbar>
+            <div class="input-fields-wrapper">
+              <mat-form-field class="full-width form-field">
+                <input matInput placeholder="Title" autofocus formControlName="titleFormControl" name="todoTitle">
+                <mat-error *ngIf="addToDoForm.controls['titleFormControl'].errors?.required">
+                  Title is required
+                </mat-error>
+              </mat-form-field>
+
+              <div class="add-todo-date-wrapper full-width flex-container">
+                <mat-form-field class="form-field start-date">
+                  <input matInput [matDatepicker]="startTask" [min]="minDate" [max]="maxDate" formControlName="startDateFormControl" name="startDate"
+                    placeholder="Start date">
+                  <mat-datepicker-toggle matSuffix [for]="startTask"></mat-datepicker-toggle>
+                  <mat-datepicker #startTask></mat-datepicker>
+                  <mat-error *ngIf="addToDoForm.controls['startDateFormControl'].errors?.required">
+                    Start date is required
+                  </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="form-field due-date">
+                  <input matInput [matDatepicker]="dueTask" [min]="minDate" [max]="maxDate" formControlName="dueDateFormControl" name="dueDate"
+                    placeholder="Due date">
+                  <mat-datepicker-toggle matSuffix [for]="dueTask"></mat-datepicker-toggle>
+                  <mat-datepicker #dueTask></mat-datepicker>
+                  <mat-error *ngIf="addToDoForm.controls['dueDateFormControl'].errors?.required">
+                    Due date is required
+                  </mat-error>
+                </mat-form-field>
+              </div>
+
+              <mat-form-field class="full-width form-field">
+                <textarea matInput placeholder="Notes" formControlName="notesFormControl" name="todoNote" matTextareaAutosize matAutosizeMinRows="2"
+                  matAutosizeMaxRows="6"></textarea>
+                <mat-error *ngIf="addToDoForm.controls['notesFormControl'].errors?.required">
+                  Notes is required
+                </mat-error>
+              </mat-form-field>
+
+              <button mat-raised-button color="primary" [disabled]="addToDoForm.invalid" type="submit">SAVE</button>
+            </div>
+          </form>
+        </div>
+      </ng-template>
+
+    </div>
+  </ng-template>
 </div>

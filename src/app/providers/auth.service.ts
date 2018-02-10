@@ -3,15 +3,35 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import { NgZone } from '@angular/core';
 import { Router } from '@angular/router';
+import {
+  AngularFirestore,
+  AngularFirestoreCollection,
+  AngularFirestoreDocument
+} from 'angularfire2/firestore';
+import { Observable } from 'rxjs/Observable';
+import { ToDo } from '../models/models';
 
 @Injectable()
 export class AuthService {
   userInfo: any;
+  todoCollection: AngularFirestoreCollection<ToDo>;
+  toDos: Observable<ToDo[]>;
+
   constructor(
     public afAuth: AngularFireAuth,
     private router: Router,
-    private zone: NgZone
-  ) {}
+    private zone: NgZone,
+    public afs: AngularFirestore
+  ) {
+    this.todoCollection = afs.collection<ToDo>('to-do');
+    this.toDos = this.todoCollection.snapshotChanges().map(actions => {
+      return actions.map(a => {
+        const data = a.payload.doc.data() as ToDo;
+        const id = a.payload.doc.id;
+        return { id, ...data };
+      });
+    });
+  }
 
   isUserSignedIn() {
     firebase.auth().onAuthStateChanged(user => {
@@ -58,5 +78,9 @@ export class AuthService {
       .catch(error => {
         console.log(error);
       });
+  }
+
+  fetchData() {
+    return this.toDos;
   }
 }

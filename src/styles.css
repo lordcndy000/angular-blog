@@ -16,7 +16,7 @@ img {
 }
 
 body.menu-collapsed .main-app-component,
-body.menu-collapsed .toolbar-wrapper {
+body.menu-collapsed .main-toolbar-wrapper {
   margin-left: 64px;
 }
 
@@ -71,6 +71,14 @@ body.menu-collapsed .toolbar-wrapper {
   background-color: #fff !important;
 }
 
+.full-width {
+  width: 100%;
+}
+
+.form-field {
+  font-size: 14px;
+}
+
 .mat-elevation {
   -webkit-box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2),
     0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12);
@@ -91,7 +99,7 @@ body.menu-collapsed .toolbar-wrapper {
 }
 
 .loading-overlay img {
-  animation: rotation 2s infinite linear;
+  /* animation: rotation 2s infinite linear; */
   margin-bottom: 25px;
 }
 
