@@ -11,11 +11,11 @@
           <img src="./assets/chrono.png" class="logo-icon">
           <span class="logo-text">CRONUS</span>
         </div>
-        <button *ngIf="!isOpen; else closed" (click)="onCloseMenu()" mat-mini-fab class="bg-transparent" id="menuToggle">
+        <button *ngIf="!isOpen; else closed" (click)="onCloseMenu()" color="primary" mat-mini-fab class="bg-transparent" id="menuToggle">
           <mat-icon>arrow_back</mat-icon>
         </button>
         <ng-template #closed>
-          <button (click)="onOpenMenu()" mat-mini-fab class="bg-transparent" id="menuOpen">
+          <button (click)="onOpenMenu()" color="primary" mat-mini-fab class="bg-transparent" id="menuOpen">
             <mat-icon>dehaze</mat-icon>
           </button>
         </ng-template>

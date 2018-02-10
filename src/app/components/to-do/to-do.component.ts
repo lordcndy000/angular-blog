@@ -9,9 +9,20 @@ import * as firebase from 'firebase/app';
   styleUrls: ['./to-do.component.css']
 })
 export class ToDoComponent implements OnInit {
+  addTaskState: Boolean;
+  isDone: any;
+
   constructor(public afService: AuthService, private router: Router) {}
 
   ngOnInit() {
     this.afService.isUserSignedIn();
+  }
+
+  openAddTaskForm() {
+    this.addTaskState = true;
+  }
+
+  closeAddTaskForm() {
+    this.addTaskState = false;
   }
 }

@@ -1,4 +1,47 @@
 <app-sidenav></app-sidenav>
 <div class="main-app-component slide-in-from-bottom">
-  todo
+  <div class="hero-wrapper flex-container">
+    <div class="page-title-col flex-center-vertical">
+      <p class="page-title flex-container">
+        <mat-icon class="page-icon">check_box</mat-icon>
+        <span>To-do</span>
+      </p>
+      <button mat-raised-button (click)="openAddTaskForm()" color="primary" class="add-task-btn">Add Task</button>
+    </div>
+    <div class="search-wrapper-col flex-container">
+      <div class="search flex-center-vertical">
+        <mat-icon class="search-icon">search</mat-icon>
+        <input type="text">
+      </div>
+      <div class="toolbar-wrapper">
+        <mat-toolbar class="todo-toolbar">
+          <mat-checkbox *ngIf="!addTaskState; else backToList"></mat-checkbox>
+        </mat-toolbar>
+        <ng-template #backToList>
+          <button class="back-to-list-btn" mat-icon-button (click)="closeAddTaskForm()">
+            <mat-icon>arrow_back</mat-icon>
+          </button>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+  <div class="todo-section flex-container">
+    <div class="todo-filters">
+      test
+    </div>
+    <div class="todo-list" *ngIf="!addTaskState; else addTask">
+      todo-list
+    </div>
+    <ng-template #addTask>
+      <div class="todo-add">
+        <mat-toolbar class="addtodo-toolbar slide-in-from-bottom">
+          <mat-checkbox>
+            <span>Mark as done</span>
+          </mat-checkbox>
+        </mat-toolbar>
+      </div>
+    </ng-template>
+
+  </div>
+
 </div>
