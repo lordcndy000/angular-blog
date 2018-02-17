@@ -23,9 +23,6 @@ export class ToDoComponent implements OnInit {
   dueDateFormControl: FormControl;
   notesFormControl: FormControl;
   addTaskState: Boolean;
-  userInfo;
-  prio = false;
-  star = false;
   minDate = _moment()
     .tz('Asia/Manila')
     .format('YYYY-MM-DD');
@@ -38,7 +35,7 @@ export class ToDoComponent implements OnInit {
 
   todoList: ToDo[];
 
-  addTodo: ToDo = {
+  addTodoFields: ToDo = {
     title: '',
     start: '',
     due: '',
@@ -58,7 +55,7 @@ export class ToDoComponent implements OnInit {
   ngOnInit() {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
-        this.addTodo.by = user.email;
+        this.addTodoFields.by = user.email;
       }
     });
     this.afService.isUserSignedIn();
@@ -75,7 +72,7 @@ export class ToDoComponent implements OnInit {
   }
 
   createAddToDoForm() {
-    // this.addToDoForm = new FormGroup({
+    // this.addTodoFieldsForm = new FormGroup({
     this.titleFormControl = new FormControl('', Validators.required);
     this.startDateFormControl = new FormControl('', Validators.required);
     this.dueDateFormControl = new FormControl('', Validators.required);
@@ -91,38 +88,38 @@ export class ToDoComponent implements OnInit {
   }
 
   togglePrio() {
-    if (this.prio === false) {
-      this.prio = true;
+    if (this.addTodoFields.priority === false) {
+      this.addTodoFields.priority = true;
     } else {
-      this.prio = false;
+      this.addTodoFields.priority = false;
     }
   }
 
   toggleStar() {
-    if (this.star === false) {
-      this.star = true;
+    if (this.addTodoFields.starred === false) {
+      this.addTodoFields.starred = true;
     } else {
-      this.star = false;
+      this.addTodoFields.starred = false;
     }
   }
 
   submitAdd() {
-    const startDate = `${this.addTodo.start._i.month + 1}/${
-      this.addTodo.start._i.date
-    }/${this.addTodo.start._i.year}`;
-    const dueDate = `${this.addTodo.due._i.month + 1}/${
-      this.addTodo.due._i.date
-    }/${this.addTodo.due._i.year}`;
+    const startDate = `${this.addTodoFields.start._i.month + 1}/${
+      this.addTodoFields.start._i.date
+    }/${this.addTodoFields.start._i.year}`;
+    const dueDate = `${this.addTodoFields.due._i.month + 1}/${
+      this.addTodoFields.due._i.date
+    }/${this.addTodoFields.due._i.year}`;
 
     const toDoData = {
-      title: this.addTodo.title,
+      title: this.addTodoFields.title,
       start: startDate,
       due: dueDate,
-      notes: this.addTodo.notes,
-      priority: this.prio,
-      starred: this.star,
-      done: this.addTodo.done,
-      by: this.addTodo.by
+      notes: this.addTodoFields.notes,
+      priority: this.addTodoFields.priority,
+      starred: this.addTodoFields.starred,
+      done: this.addTodoFields.done,
+      by: this.addTodoFields.by
     };
 
     if (!this.afService.pushData(toDoData)) {

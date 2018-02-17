@@ -38,7 +38,9 @@
       <div class="todo-list slide-in-from-bottom" *ngIf="!addTaskState; else addTask">
         <div *ngIf="todoList?.length > 0; else noToDos">
           <ul *ngFor="let todo of todoList">
-            <li>{{todo.title}}</li>
+            <li>{{todo.title}} &nbsp;
+              <span>{{todo.by}}</span>
+            </li>
           </ul>
         </div>
         <ng-template #noTodos>
@@ -51,12 +53,12 @@
             <div class="add-todo-form">
               <mat-toolbar class="addtodo-toolbar">
                 <div class="add-left-ctrl">
-                  <mat-checkbox [(ngModel)]="addTodo.done" name="addTodo.done">
+                  <mat-checkbox [(ngModel)]="addTodoFields.done" name="addTodoFields.done">
                     <span>Mark as done</span>
                   </mat-checkbox>
                 </div>
                 <div class="add-right-ctrl">
-                  <button mat-icon-button matTooltip="Set priority" (click)="togglePrio()" *ngIf="!prio; else priority">
+                  <button mat-icon-button matTooltip="Set priority" (click)="togglePrio()" *ngIf="!addTodoFields.priority; else priority">
                     <mat-icon>error_outline</mat-icon>
                   </button>
                   <ng-template #priority>
@@ -64,7 +66,7 @@
                       <mat-icon>error</mat-icon>
                     </button>
                   </ng-template>
-                  <button mat-icon-button matTooltip="Add star" (click)="toggleStar()" *ngIf="!star; else starred">
+                  <button mat-icon-button matTooltip="Add star" (click)="toggleStar()" *ngIf="!addTodoFields.starred; else starred">
                     <mat-icon>star_border</mat-icon>
                   </button>
                   <ng-template #starred>
@@ -76,7 +78,7 @@
               </mat-toolbar>
               <div class="input-fields-wrapper">
                 <mat-form-field class="full-width form-field">
-                  <input matInput placeholder="Title" [(ngModel)]="addTodo.title" [formControl]="titleFormControl" name="addTodo.title">
+                  <input matInput placeholder="Title" [(ngModel)]="addTodoFields.title" [formControl]="titleFormControl" name="addTodoFields.title">
                   <mat-error *ngIf="titleFormControl.hasError('required')">
                     Title is required
                   </mat-error>
@@ -84,8 +86,8 @@
 
                 <div class="add-todo-date-wrapper full-width flex-container">
                   <mat-form-field class="form-field start-date">
-                    <input matInput [(ngModel)]="addTodo.start" [matDatepicker]="startTask" [min]="minDate" [max]="maxDate" [formControl]="startDateFormControl"
-                      placeholder="Start date" name="addTodo.start">
+                    <input matInput [(ngModel)]="addTodoFields.start" [matDatepicker]="startTask" [min]="minDate" [max]="maxDate" [formControl]="startDateFormControl"
+                      placeholder="Start date" name="addTodoFields.start">
                     <mat-datepicker-toggle matSuffix [for]="startTask"></mat-datepicker-toggle>
                     <mat-datepicker #startTask></mat-datepicker>
                     <mat-error *ngIf="startDateFormControl.hasError('required')">
@@ -94,8 +96,8 @@
                   </mat-form-field>
 
                   <mat-form-field class="form-field due-date">
-                    <input matInput [(ngModel)]="addTodo.due" [matDatepicker]="dueTask" [min]="minDate" [max]="maxDate" [formControl]="dueDateFormControl"
-                      placeholder="Due date" name="addTodo.due">
+                    <input matInput [(ngModel)]="addTodoFields.due" [matDatepicker]="dueTask" [min]="minDate" [max]="maxDate" [formControl]="dueDateFormControl"
+                      placeholder="Due date" name="addTodoFields.due">
                     <mat-datepicker-toggle matSuffix [for]="dueTask"></mat-datepicker-toggle>
                     <mat-datepicker #dueTask></mat-datepicker>
                     <mat-error *ngIf="dueDateFormControl.hasError('required')">
@@ -105,8 +107,8 @@
                 </div>
 
                 <mat-form-field class="full-width form-field">
-                  <textarea matInput [(ngModel)]="addTodo.notes" placeholder="Notes" [formControl]="notesFormControl" matTextareaAutosize matAutosizeMinRows="2"
-                    matAutosizeMaxRows="6" name="addTodo.notes"></textarea>
+                  <textarea matInput [(ngModel)]="addTodoFields.notes" placeholder="Notes" [formControl]="notesFormControl" matTextareaAutosize
+                    matAutosizeMinRows="2" matAutosizeMaxRows="6" name="addTodoFields.notes"></textarea>
                   <mat-error *ngIf="notesFormControl.hasError('required')">
                     Notes is required
                   </mat-error>

@@ -23,13 +23,20 @@ export class FirebaseService {
     private zone: NgZone,
     public afs: AngularFirestore
   ) {
-    this.todoCollection = afs.collection<ToDo>('to-do');
-    this.toDos = this.todoCollection.snapshotChanges().map(actions => {
-      return actions.map(a => {
-        const data = a.payload.doc.data() as ToDo;
-        const id = a.payload.doc.id;
-        return { id, ...data };
-      });
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        this.userInfo = user;
+        this.todoCollection = afs.collection<ToDo>('to-do', ref =>
+          ref.where('by', '==', this.userInfo.email)
+        );
+        this.toDos = this.todoCollection.snapshotChanges().map(actions => {
+          return actions.map(a => {
+            const data = a.payload.doc.data() as ToDo;
+            const id = a.payload.doc.id;
+            return { id, ...data };
+          });
+        });
+      }
     });
   }
 
