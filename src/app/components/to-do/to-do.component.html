@@ -47,10 +47,10 @@
       </div>
       <ng-template #addTask>
         <div class="todo-add slide-in-from-bottom">
-          <form class="add-todo-form" [formGroup]="addToDoForm" (submit)="submitAdd()">
+          <div class="add-todo-form">
             <mat-toolbar class="addtodo-toolbar">
               <div class="add-left-ctrl">
-                <mat-checkbox>
+                <mat-checkbox [(ngModel)]="addTodo.done">
                   <span>Mark as done</span>
                 </mat-checkbox>
               </div>
@@ -75,45 +75,45 @@
             </mat-toolbar>
             <div class="input-fields-wrapper">
               <mat-form-field class="full-width form-field">
-                <input matInput placeholder="Title" autofocus formControlName="titleFormControl" name="todoTitle">
-                <mat-error *ngIf="addToDoForm.controls['titleFormControl'].errors?.required">
+                <input matInput placeholder="Title" [(ngModel)]="addTodo.title" [formControl]="titleFormControl">
+                <mat-error *ngIf="titleFormControl.hasError('required')">
                   Title is required
                 </mat-error>
               </mat-form-field>
 
               <div class="add-todo-date-wrapper full-width flex-container">
                 <mat-form-field class="form-field start-date">
-                  <input matInput [matDatepicker]="startTask" [min]="minDate" [max]="maxDate" formControlName="startDateFormControl" name="startDate"
+                  <input matInput [(ngModel)]="addTodo.start" [matDatepicker]="startTask" [min]="minDate" [max]="maxDate" [formControl]="startDateFormControl"
                     placeholder="Start date">
                   <mat-datepicker-toggle matSuffix [for]="startTask"></mat-datepicker-toggle>
                   <mat-datepicker #startTask></mat-datepicker>
-                  <mat-error *ngIf="addToDoForm.controls['startDateFormControl'].errors?.required">
+                  <mat-error *ngIf="startDateFormControl.hasError('required')">
                     Start date is required
                   </mat-error>
                 </mat-form-field>
 
                 <mat-form-field class="form-field due-date">
-                  <input matInput [matDatepicker]="dueTask" [min]="minDate" [max]="maxDate" formControlName="dueDateFormControl" name="dueDate"
+                  <input matInput [(ngModel)]="addTodo.due" [matDatepicker]="dueTask" [min]="minDate" [max]="maxDate" [formControl]="dueDateFormControl"
                     placeholder="Due date">
                   <mat-datepicker-toggle matSuffix [for]="dueTask"></mat-datepicker-toggle>
                   <mat-datepicker #dueTask></mat-datepicker>
-                  <mat-error *ngIf="addToDoForm.controls['dueDateFormControl'].errors?.required">
+                  <mat-error *ngIf="dueDateFormControl.hasError('required')">
                     Due date is required
                   </mat-error>
                 </mat-form-field>
               </div>
 
               <mat-form-field class="full-width form-field">
-                <textarea matInput placeholder="Notes" formControlName="notesFormControl" name="todoNote" matTextareaAutosize matAutosizeMinRows="2"
+                <textarea matInput [(ngModel)]="addTodo.notes" placeholder="Notes" [formControl]="notesFormControl" matTextareaAutosize matAutosizeMinRows="2"
                   matAutosizeMaxRows="6"></textarea>
-                <mat-error *ngIf="addToDoForm.controls['notesFormControl'].errors?.required">
+                <mat-error *ngIf="notesFormControl.hasError('required')">
                   Notes is required
                 </mat-error>
               </mat-form-field>
 
-              <button mat-raised-button color="primary" [disabled]="addToDoForm.invalid" type="submit">SAVE</button>
+              <button mat-raised-button color="primary" (click)="submitAdd()" [disabled]="invalid" type="submit">SAVE</button>
             </div>
-          </form>
+          </div>
         </div>
       </ng-template>
 

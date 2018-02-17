@@ -25,7 +25,6 @@ export class SidenavComponent implements OnInit {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
         this.userInfo = user;
-        console.log(this.userInfo, 'side');
       }
     });
 
