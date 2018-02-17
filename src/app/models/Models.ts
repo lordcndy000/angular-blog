@@ -11,5 +11,5 @@ export interface ToDo {
   priority: Boolean;
   starred: Boolean;
   done: Boolean;
-  by: anu;
+  by: String;
 }

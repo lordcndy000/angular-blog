@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../providers/auth.service';
+import { FirebaseService } from '../../providers/firebase.service';
 import { Router } from '@angular/router';
 import * as firebase from 'firebase/app';
 @Component({
@@ -9,7 +9,7 @@ import * as firebase from 'firebase/app';
 })
 export class DashboardComponent implements OnInit {
   userInfo: any;
-  constructor(public afService: AuthService, private router: Router) {}
+  constructor(public afService: FirebaseService, private router: Router) {}
 
   ngOnInit() {
     firebase.auth().onAuthStateChanged(user => {

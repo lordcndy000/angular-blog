@@ -6,6 +6,7 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireStorageModule } from 'angularfire2/storage';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+// import { LIVE_ANNOUNCER_PROVIDER } from '@angular/cdk/a11y';
 import { Routes, RouterModule } from '@angular/router';
 import { environment } from '../environments/environment';
 import { MatButtonModule } from '@angular/material/button';
@@ -19,6 +20,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
 import {
   MAT_MOMENT_DATE_FORMATS,
   MomentDateAdapter
@@ -39,8 +42,11 @@ import { MailComponent } from './components/mail/mail.component';
 import { FileManagerComponent } from './components/file-manager/file-manager.component';
 import { ContactsComponent } from './components/contacts/contacts.component';
 import { ToDoComponent } from './components/to-do/to-do.component';
+import { AddToDoSuccessComponent } from './components/popups/snackbar/snackbars/snackbars.component';
+import { AddToDoFailedComponent } from './components/popups/snackbar/snackbars/snackbars.component';
+
 // providers
-import { AuthService } from './providers/auth.service';
+import { FirebaseService } from './providers/firebase.service';
 
 const appRoutes: Routes = [
   {
@@ -83,7 +89,9 @@ const appRoutes: Routes = [
     MailComponent,
     FileManagerComponent,
     ContactsComponent,
-    ToDoComponent
+    ToDoComponent,
+    AddToDoSuccessComponent,
+    AddToDoFailedComponent
   ],
   imports: [
     BrowserModule,
@@ -96,6 +104,7 @@ const appRoutes: Routes = [
     AngularFireAuthModule,
     AngularFireStorageModule,
     // MomentModule,
+    MatSnackBarModule,
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
@@ -109,7 +118,7 @@ const appRoutes: Routes = [
     MatMomentDateModule
   ],
   providers: [
-    AuthService,
+    FirebaseService,
     {
       provide: DateAdapter,
       useClass: MomentDateAdapter,
@@ -117,6 +126,7 @@ const appRoutes: Routes = [
     },
     { provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [AddToDoSuccessComponent, AddToDoFailedComponent]
 })
 export class AppModule {}

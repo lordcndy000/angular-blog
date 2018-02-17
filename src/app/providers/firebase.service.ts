@@ -12,7 +12,7 @@ import { Observable } from 'rxjs/Observable';
 import { ToDo } from '../models/models';
 
 @Injectable()
-export class AuthService {
+export class FirebaseService {
   userInfo: any;
   todoCollection: AngularFirestoreCollection<ToDo>;
   toDos: Observable<ToDo[]>;
@@ -82,5 +82,9 @@ export class AuthService {
 
   fetchData() {
     return this.toDos;
+  }
+
+  pushData(data) {
+    this.todoCollection.add(data).catch(error => error);
   }
 }

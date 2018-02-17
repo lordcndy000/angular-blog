@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../providers/auth.service';
+import { FirebaseService } from '../../providers/firebase.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { ToDo } from '../../models/models';
 import * as firebase from 'firebase/app';
-// import * as _moment from 'moment';
 import * as _moment from 'moment-timezone';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material';
+import { AddToDoSuccessComponent } from '../popups/snackbar/snackbars/snackbars.component';
+import { AddToDoFailedComponent } from '../popups/snackbar/snackbars/snackbars.component';
 
 @Component({
   selector: 'app-to-do',
@@ -46,7 +49,11 @@ export class ToDoComponent implements OnInit {
     by: ''
   };
 
-  constructor(public afService: AuthService, private router: Router) {}
+  constructor(
+    public afService: FirebaseService,
+    private router: Router,
+    public snackbar: MatSnackBar
+  ) {}
 
   ngOnInit() {
     firebase.auth().onAuthStateChanged(user => {
@@ -64,7 +71,6 @@ export class ToDoComponent implements OnInit {
   printTodos() {
     this.afService.fetchData().subscribe(todos => {
       this.todoList = todos;
-      // console.log(this.todoList);
     });
   }
 
@@ -101,8 +107,6 @@ export class ToDoComponent implements OnInit {
   }
 
   submitAdd() {
-    // this.addTodo.start = `/${this.addTodo.start._d.getFullYear()}`;
-
     const startDate = `${this.addTodo.start._i.month + 1}/${
       this.addTodo.start._i.date
     }/${this.addTodo.start._i.year}`;
@@ -121,6 +125,14 @@ export class ToDoComponent implements OnInit {
       by: this.addTodo.by
     };
 
-    console.log(toDoData);
+    if (!this.afService.pushData(toDoData)) {
+      this.snackbar.openFromComponent(AddToDoSuccessComponent, {
+        duration: 1000
+      });
+    } else {
+      this.snackbar.openFromComponent(AddToDoFailedComponent, {
+        duration: 1000
+      });
+    }
   }
 }

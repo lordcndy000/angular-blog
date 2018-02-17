@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../providers/auth.service';
+import { FirebaseService } from '../../providers/firebase.service';
 import * as firebase from 'firebase/app';
 import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
 import { DatePipe } from '@angular/common';
@@ -17,7 +17,7 @@ export class SidenavComponent implements OnInit {
   today: any;
 
   constructor(
-    private afService: AuthService,
+    private afService: FirebaseService,
     private afAuth: AngularFireAuth
   ) {}
 

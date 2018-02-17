@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../providers/auth.service';
+import { FirebaseService } from '../../providers/firebase.service';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  constructor(public afService: AuthService, private router: Router) {}
+  constructor(public afService: FirebaseService, private router: Router) {}
 
   ngOnInit() {}
   onSignInClick() {
